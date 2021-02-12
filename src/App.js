@@ -35,7 +35,22 @@ function App() {
         navigator.geolocation.getCurrentPosition(success, error);
     }, [])
 
+//get weather data here
+    useEffect(() => {
+        if (query) {
 
+            service(query).then(data => {
+                console.log(data);
+                //if city not found alert message with
+                if (data.cod >= 400) {
+                    setQuery('')
+                    alert(data.message + '! please write correct city name')
+                }
+                setWeather(data)
+                setQuery('')
+            })
+        }
+    }, [query]);
 
 
     return <main>
