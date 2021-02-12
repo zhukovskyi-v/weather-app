@@ -20,6 +20,7 @@ function App() {
                 .then((res) => res.json())
                 .then((data) => {
                     try {
+                        localStorage.setItem('cityName', data.address.city);
                         setQuery(data.address.city)
                     } catch (error) {
                         console.log("error in try-catch " + error);
@@ -27,7 +28,13 @@ function App() {
                 });
         }
 
+
         function error(err) {
+            if (err){
+                if (localStorage.getItem('cityName')) {
+                    setQuery(localStorage.getItem('cityName'));
+                }else setQuery('london');
+            }
             console.warn(`ERROR(${err.code}): ${err.message}`);
         }
 
@@ -52,7 +59,9 @@ function App() {
         }
     }, [query]);
 
-
+    useEffect(() => {
+        console.log(weather);
+    }, [weather]);
     return <main>
         <SearchForm city={changeQuery}/>
     </main>
