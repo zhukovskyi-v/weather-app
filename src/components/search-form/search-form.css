@@ -30,10 +30,20 @@
     outline: none;
     border: none;
     border-radius: 16px;
-
+    cursor: pointer;
 
 }
 
 .search-button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 500px) {
+    .search-box {
+        justify-content: space-around;
+    }
+
+    .search-button {
+        width: 20%;
+    }
 }
