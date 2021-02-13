@@ -36,11 +36,10 @@ export const WeatherBox = ({weatherData}) => {
         const date = d.getDate();
         const month = months[d.getMonth()];
         const year = d.getFullYear();
-
         return `${day} ${date} ${month} ${year}`;
     };
 
-    return typeof weatherData != "undefined" ? (
+    return typeof weatherData === "object" ? (
         <div>
             <div className="location-box">
                 <div className="location">

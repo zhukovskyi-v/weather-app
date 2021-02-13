@@ -105,7 +105,6 @@ function App() {
                     break;
                 case "Fog":
                     return `app fog`;
-
                     break
                 case "Clear":
                     return `app clear`;
