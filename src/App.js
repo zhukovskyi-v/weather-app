@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import './App.css';
 import {SearchForm} from "./components/search-form/Search-form";
 import {service} from "./service/weather-service";
+import {WeatherBox} from "./components/weather-box/WeatherBox";
 import {ErrorBoundary} from "./components/error-boundary/Error-Boundary";
 import {Preloader} from "./components/preloader/Preloader";
 
@@ -80,8 +81,22 @@ function App() {
         }
     }, [weather]);
 
+
+    //Requirements for visible content box
+    function VisibleContent() {
+        if (loading) {
+            return <Preloader/>
+        } else if (hasError) {
+            return <ErrorBoundary/>
+        } else {
+            return <WeatherBox weatherData={weather}/>
+        }
+
+    }
+
     return <main>
         <SearchForm city={changeQuery}/>
+        <VisibleContent/>
     </main>
 }
 
