@@ -17,7 +17,7 @@ after installing all the necessary components, run the script
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-##API
+###API
 
 To get the name of the city was used:  `https://locationiq.com`
 
