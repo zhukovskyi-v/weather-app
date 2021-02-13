@@ -94,7 +94,34 @@ function App() {
 
     }
 
-    return <main>
+    const clazz = () => {
+        if (typeof weather.main != "undefined") {
+            const weatherType = weather.weather[0].main;
+            switch (weatherType) {
+                case "Rain":
+                    return `app rain`;
+                    break;
+                case "Clouds":
+                    return `app clouds`;
+                    break;
+                case "Fog":
+                    return `app fog`;
+                    break
+                case "Clear":
+                    return `app clear`;
+                    break;
+                case "Snow":
+                    return `app snow`;
+                    break;
+                default:
+                    return `app`;
+            }
+        } else {
+            return `app`;
+        }
+    };
+
+    return <main className={clazz()}>
         <SearchForm city={changeQuery}/>
         <VisibleContent/>
     </main>
