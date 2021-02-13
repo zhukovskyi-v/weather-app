@@ -24,7 +24,6 @@ function App() {
                 `https://us1.locationiq.com/v1/reverse.php?key=pk.d66be8129b4a1a1a69dd5fc5d9f99019&lat=${crd.latitude.toString()}&lon=${crd.longitude.toString()}&format=json`
             )
                 .then((res) => {
-                    console.log(res.status)
                     return res.json()
                 })
                 .then((data) => {
@@ -59,7 +58,6 @@ function App() {
         if (query) {
             setLoading(true)
             service(query).then(data => {
-                console.log(data);
                 //if city not found alert message with
                 if (data.cod >= 400) {
                     setQuery('')
@@ -94,8 +92,9 @@ function App() {
 
     }
 
+    //add a class to the <main> depending on the type of weather
     const clazz = () => {
-        if (typeof weather.main != "undefined") {
+        try {
             const weatherType = weather.weather[0].main;
             switch (weatherType) {
                 case "Rain":
@@ -106,6 +105,7 @@ function App() {
                     break;
                 case "Fog":
                     return `app fog`;
+
                     break
                 case "Clear":
                     return `app clear`;
@@ -116,9 +116,11 @@ function App() {
                 default:
                     return `app`;
             }
-        } else {
+        } catch (e) {
+            console.log(e);
             return `app`;
         }
+
     };
 
     return <main className={clazz()}>
